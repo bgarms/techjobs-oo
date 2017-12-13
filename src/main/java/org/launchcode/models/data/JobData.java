@@ -20,7 +20,10 @@ public class JobData {
     private JobFieldData<PositionType> positionTypes = new JobFieldData<>();
 
 
+
+
     private JobData() {
+
         JobDataImporter.loadData(this);
     }
 

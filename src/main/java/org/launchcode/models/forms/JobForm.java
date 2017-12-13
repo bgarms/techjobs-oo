@@ -15,6 +15,9 @@ import java.util.ArrayList;
  */
 public class JobForm {
 
+    // @NotNull and @Size creates requirements for the Form to has a name
+    // that is at least 1 character long.
+
     @NotNull
     @Size(min=1, message = "Name may not be empty")
     private String name;
@@ -22,27 +25,61 @@ public class JobForm {
     @NotNull
     private int employerId;
 
-    /*
-        TODO #3 - Included other fields needed to create a job,
-        with correct validation attributes and display names.
-        Don't forget to add getters and setters
-     */
-
+    @NotNull
+    @Size(min=1, message = "Employer may not be empty")
     private ArrayList<Employer> employers;
+
+    @NotNull
+    @Size(min=1, message = "Location may not be empty")
     private ArrayList<Location> locations;
+
+    @NotNull
+    @Size(min=1, message = "Must list a competency")
     private ArrayList<CoreCompetency> coreCompetencies;
+
+    @NotNull
+    @Size(min=1, message = "Position Type may not be blank")
     private ArrayList<PositionType> positionTypes;
+
+    private int location;
+
+    private int positionType;
+
+    private int coreCompetency;
 
     public JobForm() {
 
         JobData jobData = JobData.getInstance();
 
-        /*
-            TODO #4 - populate the other ArrayList collections needed in the view
-        */
-
         employers = jobData.getEmployers().findAll();
+        locations = jobData.getLocations().findAll();
+        coreCompetencies = jobData.getCoreCompetencies().findAll();
+        positionTypes = jobData.getPositionTypes().findAll();
 
+    }
+
+    public int getPositionType() {
+        return positionType;
+    }
+
+    public void setPositionType(int positionType) {
+        this.positionType = positionType;
+    }
+
+    public int getCoreCompetency() {
+        return coreCompetency;
+    }
+
+    public void setCoreCompetency(int coreCompetency) {
+        this.coreCompetency = coreCompetency;
+    }
+
+    public int getLocation() {
+        return location;
+    }
+
+    public void setLocation(int location) {
+        this.location = location;
     }
 
     public String getName() {
@@ -58,6 +95,7 @@ public class JobForm {
     }
 
     public void setEmployerId(int employerId) {
+
         this.employerId = employerId;
     }
 
